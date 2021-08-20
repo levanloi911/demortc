@@ -7,9 +7,14 @@ import AppProvider from './Context/AppProvider';
 import AddRoomModal from './components/Modals/AddRoomModal';
 import InviteMemberModal from './components/Modals/InviteMemberModal';
 import Modalcall from './components/Modals/Modalcall';
+import { useEffect } from 'react';
+import Peer from 'peerjs';
 
 function App() {
+  
+
   return (
+    
     <BrowserRouter>
       <AuthProvider>
         <AppProvider>

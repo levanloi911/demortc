@@ -1,7 +1,7 @@
 import { PhoneOutlined, UserAddOutlined } from '@ant-design/icons';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { Button, Tooltip, Avatar, Form, Input, Alert } from 'antd';
+import { Button, Row, Col, Tooltip, Avatar, Form, Input, Alert } from 'antd';
 import Message from './Message';
 import { AppContext } from '../../Context/AppProvider';
 import { addDocument } from '../../firebase/services';
@@ -71,7 +71,7 @@ const MessageListStyled = styled.div`
 `;
 
 export default function ChatWindow() {
-  const { selectedRoom, setModalcall, members, setIsInviteMemberVisible } =
+  const { setModalcall, selectedRoom, members, setIsInviteMemberVisible } =
     useContext(AppContext);
   const {
     user: { uid, photoURL, displayName },
@@ -122,11 +122,19 @@ export default function ChatWindow() {
         messageListRef.current.scrollHeight + 50;
     }
   }, [messages]);
-
+  useEffect(() => {
+  
+  }, []);
   return (
     <WrapperStyled>
       {selectedRoom.id ? (
         <>
+          <Col span={18} className='room__video-container'>
+            <Row>
+              <Col style={{ marginBottom: '20px' }} span={8}>
+              </Col>
+            </Row>
+          </Col>
           <HeaderStyled>
             <div className='header__info'>
               <p className='header__title'>{selectedRoom.name}</p>
@@ -164,6 +172,7 @@ export default function ChatWindow() {
           </HeaderStyled>
           <ContentStyled>
             <MessageListStyled ref={messageListRef} >
+              
               {messages.map((mes) => (
                 <Message
                   key={mes.id}
